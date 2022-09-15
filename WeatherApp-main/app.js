@@ -10,7 +10,7 @@ const searchInputBox = document.getElementById('input-box');
 searchInputBox.addEventListener('keypress', (event) => {
     
     if(event.keyCode == 13) {
-        console.log(searchInputBox.value);
+        // console.log(searchInputBox.value);
         getWeatherReport(searchInputBox.value);
         document.querySelector('.weather-body').style.display = "block";
     }
@@ -27,7 +27,12 @@ function getWeatherReport(city) {
 
 // Show Weather Report
 function showWeatherReport(weather){
-    console.log(weather);
+    if(weather.message==='city not found'){
+        alert("please enter a valid city name");
+        location.reload();
+    }
+
+    // console.log(weather);
 
     let city = document.getElementById('city');
     city.innerText = `${weather.name}, ${weather.sys.country}`;
